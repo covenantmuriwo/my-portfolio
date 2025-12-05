@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Admin Dashboard</title>
+<style>
+body { font-family: Arial; padding: 20px; background: #f3f3f3; }
+.login-box, .dashboard { max-width: 800px; margin: auto; padding: 20px; background: white; border-radius: 10px; }
+h2 { text-align: center; }
+button { padding: 5px 10px; margin: 2px; cursor: pointer; }
+table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+th { background: #f2f2f2; }
+#logoutBtn { float: right; margin-bottom: 10px; }
+</style>
+</head>
+<body>
+
+<!-- Login Box -->
+<div class="login-box" id="login-box">
+    <h2>Admin Login</h2>
+    <input id="adminPass" type="password" placeholder="Enter password" style="width:100%; padding:10px;">
+    <button id="loginBtn">Login</button>
+    <p id="loginStatus" style="color:red;"></p>
+</div>
+
+<!-- Dashboard -->
+<div class="dashboard" id="dashboard" style="display:none;">
+    <button id="logoutBtn">Logout</button>
+    <h2>📩 Contact Messages</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Message</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="messagesTable"></tbody>
+    </table>
+</div>
+
+<script>
+// Check if admin is already logged in
+if (localStorage.getItem("adminLoggedIn") === "true") {
+    document.getElementById("login-box").style.display = "none";
+    document.getElementById("dashboard").style.display = "block";
+    loadMessages();
+}
+
+// Login
+document.getElementById("loginBtn").addEventListener("click", async () => {
+    const password = document.getElementById("adminPass").value;
+
+    try {
+        const res = await fetch("/api/admin/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ password })
+        });
+        const data = await res.json();
+
+        if (data.success) {
+            localStorage.setItem("adminLoggedIn", "true"); // Remember login
+            document.getElementById("login-box").style.display = "none";
+            document.getElementById("dashboard").style.display = "block";
+            loadMessages();
+        } else {
+            document.getElementById("loginStatus").innerText = data.message;
+        }
+    } catch (err) {
+        console.error(err);
+        document.getElementById("loginStatus").innerText = "Server error!";
+    }
+});
+
+// Logout
+document.getElementById("logoutBtn").addEventListener("click", () => {
+    localStorage.removeItem("adminLoggedIn");
+    document.getElementById("dashboard").style.display = "none";
+    document.getElementById("login-box").style.display = "block";
+    document.getElementById("adminPass").value = "";
+    document.getElementById("loginStatus").innerText = "";
+});
+
+// Load messages
+async function loadMessages() {
+    try {
+        const res = await fetch("/api/admin/messages");
+        const data = await res.json();
+        const table = document.getElementById("messagesTable");
+        table.innerHTML = "";
+
+        data.messages.forEach(msg => {
+            table.innerHTML += `
+                <tr>
+                    <td>${msg.name}</td>
+                    <td>${msg.email}</td>
+                    <td>${msg.message}</td>
+                    <td>${new Date(msg.createdAt).toLocaleString()}</td>
+                    <td>
+                        <button onclick="deleteMessage('${msg._id}')">Delete</button>
+                        <button onclick="replyMessage('${msg.email}')">Reply</button>
+                    </td>
+                </tr>
+            `;
+        });
+    } catch (err) {
+        console.error(err);
+    }
+}
+
+// Delete message
+async function deleteMessage(id) {
+    if (!confirm("Are you sure you want to delete this message?")) return;
+
+    try {
+        const res = await fetch(`/api/admin/messages/${id}`, { method: "DELETE" });
+        const data = await res.json();
+        if (data.success) {
+            alert("Message deleted ✅");
+            loadMessages();
+        } else {
+            alert("Failed to delete message ❌");
+        }
+    } catch (err) {
+        console.error(err);
+        alert("Server error ❌");
+    }
+}
+
+// Reply to message
+async function replyMessage(email) {
+    const replyMessage = prompt("Enter your reply message:");
+    if (!replyMessage) return;
+
+    try {
+        const res = await fetch("/api/admin/reply", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, replyMessage })
+        });
+        const data = await res.json();
+        if (data.success) {
+            alert("Reply sent ✅");
+        } else {
+            alert("Failed to send reply ❌");
+        }
+    } catch (err) {
+        console.error(err);
+        alert("Server error ❌");
+    }
+}
+</script>
+
+</body>
+</html>
