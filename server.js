@@ -2,7 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const nodemailer = require("nodemailer");
+// const nodemailer = require("nodemailer"); // ❌ Disabled
 const path = require("path");
 
 const app = express();
@@ -32,7 +32,8 @@ const ContactSchema = new mongoose.Schema({
 
 const Contact = mongoose.model("Contact", ContactSchema);
 
-// -------------------- NODEMAILER SETUP --------------------
+// -------------------- NODEMAILER SETUP (DISABLED) --------------------
+/*
 const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
     port: 587,
@@ -42,6 +43,7 @@ const transporter = nodemailer.createTransport({
         pass: process.env.EMAIL_PASS
     }
 });
+*/
 
 // -------------------- ROUTES --------------------
 
@@ -53,15 +55,17 @@ app.post("/api/contact", async (req, res) => {
         const newMessage = new Contact({ name, email, message });
         await newMessage.save();
 
-        // Send email to admin
+        // ❌ Nodemailer disabled
+        /*
         await transporter.sendMail({
             from: process.env.EMAIL_USER,
             to: process.env.EMAIL_USER,
             subject: `Portfolio Message from ${name}`,
             text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`
         });
+        */
 
-        res.status(200).json({ success: true, message: "Message sent!" });
+        res.status(200).json({ success: true, message: "Message saved!" });
     } catch (error) {
         console.error(error);
         res.status(500).json({ success: false, error: error.message });
@@ -76,7 +80,6 @@ app.post("/api/admin/login", (req, res) => {
         res.json({ success: false, message: "Invalid password!" });
     }
 });
-
 
 // Fetch messages
 app.get("/api/admin/messages", async (req, res) => {
@@ -99,19 +102,22 @@ app.delete("/api/admin/messages/:id", async (req, res) => {
     }
 });
 
-// Reply to a message via email
+// Reply via email (DISABLED)
 app.post("/api/admin/reply", async (req, res) => {
     const { email, replyMessage, subject } = req.body;
 
     try {
+        // ❌ Nodemailer disabled
+        /*
         await transporter.sendMail({
             from: process.env.EMAIL_USER,
             to: email,
             subject: subject || "Reply from Portfolio",
             text: replyMessage
         });
+        */
 
-        res.json({ success: true, message: "Email sent successfully" });
+        res.json({ success: true, message: "Email sending disabled on server" });
     } catch (error) {
         console.error("❌ Failed to send reply:", error);
         res.status(500).json({ success: false, error: "Server Error" });
