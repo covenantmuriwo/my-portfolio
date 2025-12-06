@@ -1,18 +1,10 @@
-/* Ensure consistent base */
-* {
-    box-sizing: border-box;
-}
-
 body { 
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    background-color: #f4f4f4;
     background: linear-gradient(to right, #1e3c72, #2a5298);
     color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
 }
 
 /* Content */
@@ -22,7 +14,7 @@ body {
     margin: 50px auto;
 }
 
-/* Navigation Bar — FIXED FOR MOBILE HORIZONTAL */
+/* Navigation Bar */
 nav {
     position: fixed;
     top: 0;
@@ -34,17 +26,13 @@ nav {
     display: flex;
     gap: 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    white-space: nowrap;
-    z-index: 1000;
-    width: fit-content;
-    max-width: 95vw;
+    overflow-x: auto; /* Allow horizontal scrolling if needed */
+    -webkit-overflow-scrolling: touch; /* Smooth scroll on iOS */
+    scrollbar-width: none; /* Hide scrollbar for modern browsers */
 }
 
 nav::-webkit-scrollbar {
-    display: none;
+    display: none; /* Hide scrollbar for Chrome/Safari */
 }
 
 nav ul {
@@ -53,8 +41,8 @@ nav ul {
     justify-content: center;
     margin: 0;
     padding: 0;
-    flex-wrap: nowrap;
-    min-width: max-content;
+    flex-wrap: nowrap; /* Force items to stay in one row */
+    min-width: 100%; /* Ensure it can expand beyond viewport if needed */
 }
 
 nav ul li {
@@ -67,21 +55,21 @@ nav ul li a {
     font-size: 16px;
     padding: 10px 15px;
     transition: 0.3s;
-    white-space: nowrap;
+    white-space: nowrap; /* Prevent line breaks */
+}
+
+/* Hover effect */
+nav ul li a:hover {
+    background: rgba(255, 255, 255, 0.3);
     border-radius: 5px;
 }
 
-nav ul li a:hover {
-    background: rgba(255, 255, 255, 0.3);
-}
-
-/* Mobile: Reduce spacing to fit all items */
+/* Responsive Fix – KEEP HORIZONTAL ON MOBILE */
 @media (max-width: 768px) {
     nav {
+        width: 95%;
         padding: 10px 10px;
         gap: 10px;
-        width: 95%;
-        max-width: 95vw;
     }
 
     nav ul li {
@@ -94,11 +82,12 @@ nav ul li a:hover {
     }
 }
 
+/* For very small screens (like iPhone SE) */
 @media (max-width: 480px) {
     nav {
+        width: 98%;
         padding: 8px 5px;
         gap: 5px;
-        width: 98%;
     }
 
     nav ul li {
@@ -126,6 +115,19 @@ nav ul li a:hover {
 h1,
 p {
     animation: fadeIn 1s ease-in-out;
+}
+
+/* General page styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to right, #1e3c72, #2a5298);
+    color: white;
 }
 
 /* Contact Section */
@@ -191,7 +193,7 @@ p {
     background: #ff1e00;
 }
 
-/* Mobile form */
+/* Mobile */
 @media (max-width: 600px) {
     .contact-form {
         width: 90%;
