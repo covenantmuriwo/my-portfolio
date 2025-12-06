@@ -1,3 +1,6 @@
+/* ---------------------------
+   BASE / GLOBAL (your original)
+   --------------------------- */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -14,7 +17,9 @@ body {
     margin: 50px auto;
 }
 
-/* Navigation Bar */
+/* ---------------------------
+   NAVIGATION BAR (updated)
+   --------------------------- */
 nav {
     position: fixed;
     top: 0;
@@ -26,12 +31,24 @@ nav {
     display: flex;
     gap: 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+
+    /* NEW - don't let nav be wider than the viewport */
+    max-width: 98vw;
+    /* NEW - if on an extremely narrow device allow horizontal scroll as a graceful fallback */
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
+/* keep ul horizontal, centered, no wrap */
 nav ul {
     list-style: none;
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;      /* ensure one row */
+    white-space: nowrap;    /* prevent text wrap */
+    margin: 0;
+    padding: 0;
 }
 
 nav ul li {
@@ -43,6 +60,7 @@ nav ul li a {
     text-decoration: none;
 }
 
+/* links */
 nav a {
     text-decoration: none;
     color: white;
@@ -57,12 +75,29 @@ nav a:hover {
     border-radius: 5px;
 }
 
-/* Responsive Fix */
+/* ---------------------------
+   RESPONSIVE FIX (modified)
+   Keep navbar horizontal; reduce spacing & font size so Contact fits
+   --------------------------- */
 @media (max-width: 768px) {
     nav {
-        flex-direction: column;
-        align-items: center;
-        width: 90%;
+        /* keep centered but reduce horizontal space used */
+        padding: 10px 12px;
+        gap: 12px;          /* smaller gap between flex children (safety) */
+        max-width: 98vw;    /* ensure it stays within viewport */
+    }
+
+    nav ul {
+        gap: 10px;          /* tighten spacing between items */
+    }
+
+    nav ul li {
+        margin: 0 8px;      /* smaller left/right margin on each li */
+    }
+
+    nav a {
+        font-size: 14px;    /* slightly smaller text on mobile */
+        padding: 8px 10px;  /* reduce padding so links fit */
     }
 }
 
@@ -83,7 +118,9 @@ p {
     animation: fadeIn 1s ease-in-out;
 }
 
-/* General page styles */
+/* General page styles
+   Note: you had a second body block in the original; I preserve the behavior below.
+*/
 body {
     font-family: Arial, sans-serif;
     margin: 0;
