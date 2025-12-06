@@ -1,22 +1,20 @@
-/* GLOBAL */
-body {
+body { 
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    background-color: #f4f4f4;
     background: linear-gradient(to right, #1e3c72, #2a5298);
     color: white;
-    width: 100%;
 }
 
-/* Content for Home */
+/* Content */
 .content {
     text-align: center;
-    max-width: 900px;
-    margin: 120px auto 50px auto;
-    padding: 0 20px;
+    max-width: 800px;
+    margin: 50px auto;
 }
 
-/* NAV BAR */
+/* Navigation Bar */
 nav {
     position: fixed;
     top: 0;
@@ -27,61 +25,274 @@ nav {
     border-radius: 10px;
     display: flex;
     gap: 20px;
-    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    overflow-x: auto; /* Allow horizontal scrolling if needed */
+    -webkit-overflow-scrolling: touch; /* Smooth scroll on iOS */
+    scrollbar-width: none; /* Hide scrollbar for modern browsers */
+}
+
+nav::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for Chrome/Safari */
 }
 
 nav ul {
     list-style: none;
     display: flex;
-    padding: 0;
+    justify-content: center;
     margin: 0;
+    padding: 0;
+    flex-wrap: nowrap; /* Force items to stay in one row */
+    min-width: 100%; /* Ensure it can expand beyond viewport if needed */
 }
 
 nav ul li {
     margin: 0 15px;
 }
 
-nav a {
+nav ul li a {
     color: white;
     text-decoration: none;
     font-size: 16px;
-    padding: 8px 12px;
+    padding: 10px 15px;
+    transition: 0.3s;
+    white-space: nowrap; /* Prevent line breaks */
 }
 
-/* Hover */
-nav a:hover {
+/* Hover effect */
+nav ul li a:hover {
     background: rgba(255, 255, 255, 0.3);
     border-radius: 5px;
 }
 
-/* MOBILE NAV FIX */
+/* Responsive Fix – KEEP HORIZONTAL ON MOBILE */
 @media (max-width: 768px) {
     nav {
-        flex-direction: column;
-        width: 90%;
-        padding: 15px;
+        width: 95%;
+        padding: 10px 10px;
         gap: 10px;
     }
 
-    nav ul {
-        flex-direction: column;
-        text-align: center;
+    nav ul li {
+        margin: 0 8px;
+    }
+
+    nav ul li a {
+        font-size: 14px;
+        padding: 8px 10px;
+    }
+}
+
+/* For very small screens (like iPhone SE) */
+@media (max-width: 480px) {
+    nav {
+        width: 98%;
+        padding: 8px 5px;
+        gap: 5px;
     }
 
     nav ul li {
-        margin: 8px 0;
+        margin: 0 5px;
+    }
+
+    nav ul li a {
+        font-size: 13px;
+        padding: 6px 8px;
     }
 }
 
-/* ABOUT SECTION */
-#about {
-    padding: 100px 20px 60px 20px;
+/* Fade-in Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+h1,
+p {
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* General page styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to right, #1e3c72, #2a5298);
+    color: white;
+}
+
+/* Contact Section */
+.contact-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 600px;
+}
+
+/* Contact Form with Glassmorphism */
+.contact-form {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    width: 100%;
     text-align: center;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    animation: fadeIn 1s ease-in-out;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 90%;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    outline: none;
+    transition: 0.3s ease-in-out;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+/* Button */
+.contact-form button {
+    padding: 12px 20px;
+    background: #ff4b2b;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 18px;
+    transition: 0.3s ease-in-out;
+}
+
+.contact-form button:hover {
+    background: #ff1e00;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .contact-form {
+        width: 90%;
+    }
+}
+
+/* Profile Pic */
+.profile-pic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    margin: 20px auto;
+    border: 3px solid white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Projects Section */
+#projects {
+    text-align: center;
+    padding: 50px 20px;
+    background: linear-gradient(to right, #1e3c72, #2a5298);
+    color: white;
+}
+
+.projects-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+/* Project Card */
+.project-card {
+    background: white;
+    width: 320px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.project-card img {
+    width: 100%;
+    border-radius: 10px;
+    height: 180px;
+    object-fit: cover;
+}
+
+.project-card h3 {
+    color: #1e3c72;
+    margin-top: 15px;
+}
+
+.project-card p {
+    font-size: 14px;
+    color: #555;
+    margin: 10px 0;
+}
+
+.project-card a {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 15px;
+    background: #007BFF;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.project-card a:hover {
+    background: #0056b3;
+}
+
+/* About Section */
+#about {
+    background: linear-gradient(to right, #1e3c72, #2a5298);
+    color: white;
+    text-align: center;
+    padding: 60px 20px;
 }
 
 .about-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
     max-width: 900px;
     margin: auto;
+    padding: 20px;
 }
 
 .about-img {
@@ -89,93 +300,39 @@ nav a:hover {
     height: 150px;
     border-radius: 50%;
     object-fit: cover;
-    border: 4px solid white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     margin-bottom: 20px;
+    border: 4px solid white;
 }
 
 .about-text {
-    max-width: 600px;
-    margin: auto;
-}
-
-/* About MOBILE FIX / Full width text */
-@media (max-width: 600px) {
-    .about-text {
-        width: 100%;
-        font-size: 16px;
-        padding: 10px;
-    }
-}
-
-/* PROJECTS SECTION */
-#projects {
-    padding: 100px 20px 50px 20px;
-    text-align: center;
-}
-
-.projects-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-}
-
-/* Full width on mobile */
-@media (max-width: 600px) {
-    .project-card {
-        width: 100% !important;
-        max-width: 350px;
-        margin: auto;
-    }
-}
-
-.project-card {
-    background: white;
-    width: 320px;
+    max-width: 500px;
     padding: 20px;
-    border-radius: 10px;
-    color: black;
 }
 
-/* CONTACT SECTION */
-.contact-container {
-    margin-top: 120px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
+.about-text h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
 }
 
-.contact-form {
-    width: 100%;
-    max-width: 600px;
-    margin: auto;
-    background: rgba(255, 255, 255, 0.1);
-    padding: 25px;
-    border-radius: 15px;
-    text-align: center;
+.about-text p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 10px;
 }
 
-/* FIX: Center contact on mobile */
-@media (max-width: 600px) {
-    .contact-form {
-        width: 90%;
-        margin: auto;
-    }
-}
-
-.contact-form input,
-.contact-form textarea {
-    width: 90%;
-    margin: 10px 0;
-    padding: 12px;
-    border-radius: 5px;
-    border: none;
-}
-
-.contact-form button {
-    padding: 12px 20px;
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
     background: #ff4b2b;
     color: white;
-    border: none;
+    text-decoration: none;
     border-radius: 5px;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #ff1e00;
 }
