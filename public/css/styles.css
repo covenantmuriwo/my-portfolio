@@ -26,13 +26,6 @@ nav {
     display: flex;
     gap: 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    overflow-x: auto; /* Allow horizontal scrolling if needed */
-    -webkit-overflow-scrolling: touch; /* Smooth scroll on iOS */
-    scrollbar-width: none; /* Hide scrollbar for modern browsers */
-}
-
-nav::-webkit-scrollbar {
-    display: none; /* Hide scrollbar for Chrome/Safari */
 }
 
 nav ul {
@@ -41,8 +34,6 @@ nav ul {
     justify-content: center;
     margin: 0;
     padding: 0;
-    flex-wrap: nowrap; /* Force items to stay in one row */
-    min-width: 100%; /* Ensure it can expand beyond viewport if needed */
 }
 
 nav ul li {
@@ -55,7 +46,6 @@ nav ul li a {
     font-size: 16px;
     padding: 10px 15px;
     transition: 0.3s;
-    white-space: nowrap; /* Prevent line breaks */
 }
 
 /* Hover effect */
@@ -64,39 +54,43 @@ nav ul li a:hover {
     border-radius: 5px;
 }
 
-/* Responsive Fix – KEEP HORIZONTAL ON MOBILE */
+/* Responsive Fix – FIXED VERSION */
 @media (max-width: 768px) {
     nav {
-        width: 95%;
-        padding: 10px 10px;
-        gap: 10px;
+        flex-direction: column;
+        align-items: center;
+        width: 90%;
+        padding: 12px 15px;
+        transform: translateX(-50%);
+        left: 50%;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
     }
 
     nav ul li {
-        margin: 0 8px;
+        margin: 8px 0;
+        width: 100%;
+        text-align: center;
     }
 
     nav ul li a {
-        font-size: 14px;
-        padding: 8px 10px;
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        font-size: 16px;
+        padding: 10px 15px;
     }
 }
 
-/* For very small screens (like iPhone SE) */
+/* Extra safety for very small screens */
 @media (max-width: 480px) {
-    nav {
-        width: 98%;
-        padding: 8px 5px;
-        gap: 5px;
-    }
-
-    nav ul li {
-        margin: 0 5px;
-    }
-
     nav ul li a {
-        font-size: 13px;
-        padding: 6px 8px;
+        font-size: 14px;
+        padding: 8px 10px;
     }
 }
 
