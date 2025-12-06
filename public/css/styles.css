@@ -1,4 +1,4 @@
-body { 
+body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -26,23 +26,12 @@ nav {
     display: flex;
     gap: 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    overflow-x: auto; /* Allow horizontal scrolling if needed */
-    -webkit-overflow-scrolling: touch; /* Smooth scroll on iOS */
-    scrollbar-width: none; /* Hide scrollbar for modern browsers */
-}
-
-nav::-webkit-scrollbar {
-    display: none; /* Hide scrollbar for Chrome/Safari */
 }
 
 nav ul {
     list-style: none;
     display: flex;
     justify-content: center;
-    margin: 0;
-    padding: 0;
-    flex-wrap: nowrap; /* Force items to stay in one row */
-    min-width: 100%; /* Ensure it can expand beyond viewport if needed */
 }
 
 nav ul li {
@@ -52,51 +41,28 @@ nav ul li {
 nav ul li a {
     color: white;
     text-decoration: none;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
     font-size: 16px;
     padding: 10px 15px;
     transition: 0.3s;
-    white-space: nowrap; /* Prevent line breaks */
 }
 
 /* Hover effect */
-nav ul li a:hover {
+nav a:hover {
     background: rgba(255, 255, 255, 0.3);
     border-radius: 5px;
 }
 
-/* Responsive Fix – KEEP HORIZONTAL ON MOBILE */
+/* Responsive Fix */
 @media (max-width: 768px) {
     nav {
-        width: 95%;
-        padding: 10px 10px;
-        gap: 10px;
-    }
-
-    nav ul li {
-        margin: 0 8px;
-    }
-
-    nav ul li a {
-        font-size: 14px;
-        padding: 8px 10px;
-    }
-}
-
-/* For very small screens (like iPhone SE) */
-@media (max-width: 480px) {
-    nav {
-        width: 98%;
-        padding: 8px 5px;
-        gap: 5px;
-    }
-
-    nav ul li {
-        margin: 0 5px;
-    }
-
-    nav ul li a {
-        font-size: 13px;
-        padding: 6px 8px;
+        flex-direction: column;
+        align-items: center;
+        width: 90%;
     }
 }
 
