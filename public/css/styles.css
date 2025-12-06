@@ -1,3 +1,4 @@
+/* =================== GENERAL BODY =================== */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -14,7 +15,7 @@ body {
     margin: 50px auto;
 }
 
-/* Navigation Bar */
+/* =================== NAVIGATION BAR =================== */
 nav {
     position: fixed;
     top: 0;
@@ -57,46 +58,28 @@ nav a:hover {
     border-radius: 5px;
 }
 
-/* Responsive Fix */
-@media (max-width: 768px) {
-    nav {
-        flex-direction: column;
-        align-items: center;
-        width: 90%;
-    }
-}
-
-/* Fade-in Animation */
+/* =================== ANIMATIONS =================== */
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-h1,
-p {
+h1, p {
     animation: fadeIn 1s ease-in-out;
 }
 
-/* General page styles */
+/* =================== SECOND BODY OVERRIDE ===================
+   (THIS WAS BREAKING MOBILE — NOW SAFE) */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    display: block; /* FIXED */
     background: linear-gradient(to right, #1e3c72, #2a5298);
     color: white;
 }
 
-/* Contact Section */
+/* =================== CONTACT SECTION =================== */
 .contact-container {
     display: flex;
     flex-direction: column;
@@ -106,7 +89,6 @@ body {
     max-width: 600px;
 }
 
-/* Contact Form with Glassmorphism */
 .contact-form {
     background: rgba(255, 255, 255, 0.1);
     padding: 25px;
@@ -143,7 +125,6 @@ body {
     background: rgba(255, 255, 255, 0.4);
 }
 
-/* Button */
 .contact-form button {
     padding: 12px 20px;
     background: #ff4b2b;
@@ -159,14 +140,14 @@ body {
     background: #ff1e00;
 }
 
-/* Mobile */
+/* Mobile contact */
 @media (max-width: 600px) {
     .contact-form {
         width: 90%;
     }
 }
 
-/* Profile Pic */
+/* =================== PROFILE PICTURE =================== */
 .profile-pic {
     width: 150px;
     height: 150px;
@@ -178,7 +159,7 @@ body {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Projects Section */
+/* =================== PROJECTS SECTION =================== */
 #projects {
     text-align: center;
     padding: 50px 20px;
@@ -194,7 +175,6 @@ body {
     margin-top: 20px;
 }
 
-/* Project Card */
 .project-card {
     background: white;
     width: 320px;
@@ -243,7 +223,7 @@ body {
     background: #0056b3;
 }
 
-/* About Section */
+/* =================== ABOUT SECTION =================== */
 #about {
     background: linear-gradient(to right, #1e3c72, #2a5298);
     color: white;
@@ -287,7 +267,6 @@ body {
     margin-bottom: 10px;
 }
 
-/* Buttons */
 .btn {
     display: inline-block;
     padding: 10px 20px;
@@ -301,4 +280,59 @@ body {
 
 .btn:hover {
     background: #ff1e00;
+}
+
+/* =================== MOBILE LAYOUT FIXES =================== */
+@media (max-width: 768px) {
+
+    /* Allow scrolling on mobile */
+    body {
+        height: auto !important;
+        display: block !important;
+    }
+
+    /* Fix nav squeezing and shrinking */
+    nav {
+        width: 100% !important;
+        left: 0 !important;
+        transform: none !important;
+        border-radius: 0 !important;
+        justify-content: center;
+        padding: 12px 5px;
+    }
+
+    nav ul {
+        gap: 10px;
+    }
+
+    nav ul li {
+        margin: 0 5px;
+    }
+
+    nav a {
+        font-size: 14px;
+        padding: 8px 10px;
+    }
+
+    /* Fix content shrinking */
+    .content,
+    #about,
+    #projects,
+    .contact-container {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 20px !important;
+    }
+
+    /* Resize project cards */
+    .project-card {
+        width: 90% !important;
+    }
+
+    /* Resize profile pictures */
+    .profile-pic,
+    .about-img {
+        width: 120px;
+        height: 120px;
+    }
 }
