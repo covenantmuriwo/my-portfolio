@@ -121,6 +121,8 @@ p {
 /* General page styles
    Note: you had a second body block in the original; I preserve the behavior below.
 */
+
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -128,7 +130,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
     background: linear-gradient(to right, #1e3c72, #2a5298);
     color: white;
 }
