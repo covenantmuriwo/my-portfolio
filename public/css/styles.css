@@ -1,98 +1,118 @@
-/* GLOBAL STYLES */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    background-color: #f4f4f4;
     background: linear-gradient(to right, #1e3c72, #2a5298);
     color: white;
 }
 
-/* Container */
+/* Content */
 .content {
     text-align: center;
     max-width: 800px;
     margin: 50px auto;
 }
 
-/* ============================
-   NAVIGATION BAR (FIXED)
-============================ */
+/* Navigation Bar */
 nav {
     position: fixed;
-    top: 10px;
+    top: 0;
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(0, 0, 0, 0.85);
-    padding: 10px 22px;
-    border-radius: 12px;
-
+    background: rgba(0, 0, 0, 0.8);
+    padding: 12px 20px;
+    border-radius: 10px;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 22px;
-
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    z-index: 100;
+    gap: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* NAV LINKS */
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
 nav a {
     text-decoration: none;
     color: white;
     font-size: 16px;
-    padding: 8px 10px;
+    padding: 10px 15px;
     transition: 0.3s;
 }
 
+/* Hover effect */
 nav a:hover {
-    background: rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.3);
     border-radius: 5px;
 }
 
-/* === MOBILE NAV FIX === */
-/* Keep navbar horizontal but reduce spacing */
-@media (max-width: 600px) {
+/* Responsive Fix */
+@media (max-width: 768px) {
     nav {
-        gap: 12px;
-        padding: 8px 14px;
-        width: 95%;
-    }
-
-    nav a {
-        font-size: 14px;
-        padding: 6px 8px;
+        flex-direction: column;
+        align-items: center;
+        width: 90%;
     }
 }
 
-/* ============================
-   FADE ANIMATION
-============================ */
+/* Fade-in Animation */
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-h1, p {
+h1,
+p {
     animation: fadeIn 1s ease-in-out;
 }
 
-/* ============================
-   CONTACT FORM
-============================ */
+/* General page styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to right, #1e3c72, #2a5298);
+    color: white;
+}
+
+/* Contact Section */
 .contact-container {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     width: 100%;
     max-width: 600px;
 }
 
+/* Contact Form with Glassmorphism */
 .contact-form {
     background: rgba(255, 255, 255, 0.1);
     padding: 25px;
     border-radius: 15px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    width: 90%;
+    width: 100%;
     text-align: center;
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -110,8 +130,20 @@ h1, p {
     background: rgba(255, 255, 255, 0.2);
     color: white;
     outline: none;
+    transition: 0.3s ease-in-out;
 }
 
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+/* Button */
 .contact-form button {
     padding: 12px 20px;
     background: #ff4b2b;
@@ -120,16 +152,21 @@ h1, p {
     cursor: pointer;
     border-radius: 5px;
     font-size: 18px;
-    transition: 0.3s;
+    transition: 0.3s ease-in-out;
 }
 
 .contact-form button:hover {
     background: #ff1e00;
 }
 
-/* ============================
-   PROFILE PICTURE
-============================ */
+/* Mobile */
+@media (max-width: 600px) {
+    .contact-form {
+        width: 90%;
+    }
+}
+
+/* Profile Pic */
 .profile-pic {
     width: 150px;
     height: 150px;
@@ -141,13 +178,12 @@ h1, p {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* ============================
-   PROJECTS SECTION
-============================ */
+/* Projects Section */
 #projects {
     text-align: center;
     padding: 50px 20px;
     background: linear-gradient(to right, #1e3c72, #2a5298);
+    color: white;
 }
 
 .projects-container {
@@ -155,8 +191,10 @@ h1, p {
     justify-content: center;
     flex-wrap: wrap;
     gap: 20px;
+    margin-top: 20px;
 }
 
+/* Project Card */
 .project-card {
     background: white;
     width: 320px;
@@ -164,7 +202,7 @@ h1, p {
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     text-align: center;
-    transition: 0.3s;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .project-card:hover {
@@ -174,18 +212,20 @@ h1, p {
 
 .project-card img {
     width: 100%;
-    height: 180px;
     border-radius: 10px;
+    height: 180px;
     object-fit: cover;
 }
 
 .project-card h3 {
     color: #1e3c72;
+    margin-top: 15px;
 }
 
 .project-card p {
     font-size: 14px;
     color: #555;
+    margin: 10px 0;
 }
 
 .project-card a {
@@ -203,9 +243,7 @@ h1, p {
     background: #0056b3;
 }
 
-/* ============================
-   ABOUT SECTION
-============================ */
+/* About Section */
 #about {
     background: linear-gradient(to right, #1e3c72, #2a5298);
     color: white;
@@ -217,8 +255,10 @@ h1, p {
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
     max-width: 900px;
     margin: auto;
+    padding: 20px;
 }
 
 .about-img {
@@ -238,14 +278,16 @@ h1, p {
 
 .about-text h2 {
     font-size: 28px;
+    margin-bottom: 10px;
 }
 
 .about-text p {
     font-size: 16px;
     line-height: 1.6;
+    margin-bottom: 10px;
 }
 
-/* Button */
+/* Buttons */
 .btn {
     display: inline-block;
     padding: 10px 20px;
@@ -253,8 +295,8 @@ h1, p {
     color: white;
     text-decoration: none;
     border-radius: 5px;
-    transition: 0.3s;
     margin-top: 10px;
+    transition: 0.3s;
 }
 
 .btn:hover {
