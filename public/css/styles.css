@@ -1,7 +1,4 @@
-/* ---------------------------
-   BASE / GLOBAL (your original)
-   --------------------------- */
-body {
+body { 
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -17,9 +14,7 @@ body {
     margin: 50px auto;
 }
 
-/* ---------------------------
-   NAVIGATION BAR (updated)
-   --------------------------- */
+/* Navigation Bar */
 nav {
     position: fixed;
     top: 0;
@@ -31,22 +26,12 @@ nav {
     display: flex;
     gap: 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-
-    /* NEW - don't let nav be wider than the viewport */
-    max-width: 98vw;
-    /* NEW - if on an extremely narrow device allow horizontal scroll as a graceful fallback */
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
 }
 
-/* keep ul horizontal, centered, no wrap */
 nav ul {
     list-style: none;
     display: flex;
     justify-content: center;
-    align-items: center;
-    flex-wrap: nowrap;      /* ensure one row */
-    white-space: nowrap;    /* prevent text wrap */
     margin: 0;
     padding: 0;
 }
@@ -58,46 +43,54 @@ nav ul li {
 nav ul li a {
     color: white;
     text-decoration: none;
-}
-
-/* links */
-nav a {
-    text-decoration: none;
-    color: white;
     font-size: 16px;
     padding: 10px 15px;
     transition: 0.3s;
 }
 
 /* Hover effect */
-nav a:hover {
+nav ul li a:hover {
     background: rgba(255, 255, 255, 0.3);
     border-radius: 5px;
 }
 
-/* ---------------------------
-   RESPONSIVE FIX (modified)
-   Keep navbar horizontal; reduce spacing & font size so Contact fits
-   --------------------------- */
+/* Responsive Fix – FIXED VERSION */
 @media (max-width: 768px) {
     nav {
-        /* keep centered but reduce horizontal space used */
-        padding: 10px 12px;
-        gap: 12px;          /* smaller gap between flex children (safety) */
-        max-width: 98vw;    /* ensure it stays within viewport */
+        flex-direction: column;
+        align-items: center;
+        width: 90%;
+        padding: 12px 15px;
+        transform: translateX(-50%);
+        left: 50%;
     }
 
     nav ul {
-        gap: 10px;          /* tighten spacing between items */
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
     }
 
     nav ul li {
-        margin: 0 8px;      /* smaller left/right margin on each li */
+        margin: 8px 0;
+        width: 100%;
+        text-align: center;
     }
 
-    nav a {
-        font-size: 14px;    /* slightly smaller text on mobile */
-        padding: 8px 10px;  /* reduce padding so links fit */
+    nav ul li a {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        font-size: 16px;
+        padding: 10px 15px;
+    }
+}
+
+/* Extra safety for very small screens */
+@media (max-width: 480px) {
+    nav ul li a {
+        font-size: 14px;
+        padding: 8px 10px;
     }
 }
 
@@ -118,11 +111,7 @@ p {
     animation: fadeIn 1s ease-in-out;
 }
 
-/* General page styles
-   Note: you had a second body block in the original; I preserve the behavior below.
-*/
-
-
+/* General page styles */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -130,6 +119,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100vh;
     background: linear-gradient(to right, #1e3c72, #2a5298);
     color: white;
 }
